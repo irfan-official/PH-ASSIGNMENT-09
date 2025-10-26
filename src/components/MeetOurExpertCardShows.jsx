@@ -24,7 +24,7 @@ function Hero() {
 
   return (
     <div className="flex flex-col">
-      <h2 className="font-bold text-5xl text-center mt-30">
+      <h2 className="font-bold text-4xl md:text-5xl text-center mt-30">
         Meet Our Expert Vets
       </h2>
       <div

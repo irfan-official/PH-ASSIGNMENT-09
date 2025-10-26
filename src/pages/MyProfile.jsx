@@ -20,11 +20,16 @@ function MyProfile() {
     image: user.image,
   });
 
-  function handleSubmit(e) {
+  async function handleSubmit(e) {
     e.preventDefault();
 
     if (updateFormField) {
-      update(profileData);
+      const check = await update(profileData);
+
+      if (check.success) {
+        setEditForm(false);
+        setUpdateFormFiels(false);
+      }
     }
   }
 
