@@ -7,14 +7,8 @@ import { FaRegEyeSlash } from "react-icons/fa";
 import { FcGoogle } from "react-icons/fc";
 
 function Login() {
-  let {
-    googleSignIn,
-    googleLoading,
-    emailLogin,
-    loading,
-    forgotEmail,
-    setForgotEmail,
-  } = useContext(Auth_Context);
+  let { googleSignIn, googleLoading, emailLogin, loading } =
+    useContext(Auth_Context);
 
   let [form, setForm] = useState({
     email: "",
@@ -49,10 +43,6 @@ function Login() {
 
   function handleFormInput(e) {
     setForm((prev) => ({ ...prev, [e.target.name]: e.target.value }));
-
-    if (e.target.name === "email") {
-      setForgotEmail(e.target.value);
-    }
   }
 
   return (
@@ -86,7 +76,6 @@ function Login() {
                   Email Address
                 </label>
               </div>
-
               <div className="__password__ relative mt-6">
                 <input
                   onChange={handleFormInput}
@@ -116,15 +105,7 @@ function Login() {
                 </span>
               </div>
 
-              <div className="__button__ mb-4  flex flex-col justify-center items-center">
-                <span
-                  onClick={() => {
-                    navigate("/reset-password");
-                  }}
-                  className="my-3 text-center font-semibold text-[0.9rem] py-3 cursor-pointer underline text-red-500 hover:text-red-700"
-                >
-                  Forgot Password?
-                </span>
+              <div className="__button__ my-6">
                 <button
                   type="submit"
                   disabled={loading}
@@ -144,7 +125,7 @@ function Login() {
                 <hr className="border-2 w-1/3" />
               </div>
 
-              <div className="__google-login__ my-6 mt-4">
+              <div className="__google-register__ my-6">
                 <button
                   onClick={handleGoogleLogin}
                   disabled={googleLoading}
@@ -166,7 +147,7 @@ function Login() {
                 Don't have an account yet?
                 <NavLink
                   to="/register"
-                  className="underline font-semibold text-blue-500  hover:text-blue-700 focus:text-gray-800 focus:outline-none"
+                  className="underline font-semibold text-blue-500 hover:underline focus:text-gray-800 focus:outline-none"
                 >
                   {" "}
                   Register

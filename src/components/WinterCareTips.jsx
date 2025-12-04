@@ -4,7 +4,7 @@ import doubleQuto from "../assets/double-quotes.png";
 function WinterCareTips() {
   return (
     <div className="__top__ w-full px-5 my-20 mt-40 flex flex-col justify-center  gap-17 pb-10">
-      <section className="__Heading-Tips__ font-bold text-4xl md:text-5xl text-center">
+      <section className="__Heading-Tips__ font-bold text-5xl text-center">
         Winter Care Tips
       </section>
       <section className="__bottom__ flex flex-col md:flex-row gap-20 items-center justify-center">

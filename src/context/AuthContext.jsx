@@ -9,11 +9,9 @@ import {
   updateProfile,
   updateEmail,
   signInWithEmailAndPassword,
-  sendPasswordResetEmail,
 } from "firebase/auth";
 import app from "../firebase/firebase.config";
 import { toast, Bounce } from "react-toastify";
-
 export const Auth_Context = createContext();
 
 const auth = getAuth(app);
@@ -23,7 +21,6 @@ function AuthContext({ children }) {
   const [user, setUser] = useState(null);
   const [createdUser, setCreatedUser] = useState(null);
   const [googleLoading, setGoogleLoading] = useState(false);
-  const [forgotEmail, setForgotEmail] = useState("");
   const [loading, setLoading] = useState(true);
 
   const emailSignUp = async ({ name, email, password, photo_URL }) => {
@@ -49,8 +46,6 @@ function AuthContext({ children }) {
         email,
         image: photo_URL,
       });
-
-      setForgotEmail(email);
 
       // console.log("Register user ==> ", name, email, photo_URL);
 
@@ -92,8 +87,6 @@ function AuthContext({ children }) {
         image: loggedUser.photoURL || "",
         email: loggedUser.email || "",
       });
-
-      setForgotEmail(loggedUser.email);
 
       toast.success("✅ Login successful!", {
         position: "top-center",
@@ -172,8 +165,6 @@ function AuthContext({ children }) {
           image: currentUser.photoURL || "",
           email: currentUser.email || "",
         });
-
-        setForgotEmail(currentUser.email);
       } else {
         setUser(null);
       }
@@ -193,8 +184,6 @@ function AuthContext({ children }) {
         image: user.photoURL || "",
         email: user.email || "",
       });
-
-      setForgotEmail(user.email);
 
       toast.success("✅ Google login successful!", {
         position: "top-center",
@@ -245,43 +234,6 @@ function AuthContext({ children }) {
     }
   };
 
-  const resetPassword = async (email) => {
-    try {
-      if (!email) {
-        toast.error("Please enter your registered email address.", {
-          position: "top-center",
-          autoClose: 3000,
-          theme: "light",
-          transition: Bounce,
-        });
-        return { success: false };
-      }
-
-      await sendPasswordResetEmail(auth, email);
-
-      toast.success(
-        "📩 Password reset email sent! Check your inbox. and you spam box",
-        {
-          position: "top-center",
-          autoClose: 3000,
-          theme: "light",
-          transition: Bounce,
-        }
-      );
-
-      return { success: true };
-    } catch (error) {
-      toast.error(`❌ Reset Error: ${error.message}`, {
-        position: "top-center",
-        autoClose: 3000,
-        theme: "light",
-        transition: Bounce,
-      });
-      console.error("Reset Password Error =>", error.message);
-      return { success: false, error };
-    }
-  };
-
   return (
     <Auth_Context.Provider
       value={{
@@ -294,9 +246,6 @@ function AuthContext({ children }) {
         emailSignUp,
         createdUser,
         update,
-        forgotEmail,
-        setForgotEmail,
-        resetPassword,
       }}
     >
       {children}

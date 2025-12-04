@@ -4,20 +4,41 @@ import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
 import Nav from "./Nav.jsx";
-
+import { FaArrowUpLong } from "react-icons/fa6";
 import Hero_Text from "./Hero_Text.jsx";
-
+import { RiArrowDownDoubleLine } from "react-icons/ri";
 import { Autoplay, Pagination, Navigation } from "swiper/modules";
+import { FaLongArrowAltDown } from "react-icons/fa";
 
 function Hero() {
-  return (
-    <div className="w-full h-[45vh] md:h-[100vh] overflow-hidden bg-white">
-      <section className="m-5 md:m-10 h-[40vh] md:h-[90vh] relative rounded-3xl overflow-hidden">
-        <section className="w-full max-auto hidden md:absolute text-white bg-black/20 backdrop-blur-sm md:block left-0 z-30">
-          <Nav />
-        </section>
+  const handleScroll = () => {
+    if (location.pathname !== "/") {
+      navigate("/");
 
-        <div className=" h-full bg-black flex  justify-center ">
+      setTimeout(() => {
+        const section = document.getElementById("services");
+        if (section) {
+          section.scrollIntoView({ behavior: "smooth" });
+        }
+      }, 500);
+    } else {
+      const section = document.getElementById("services");
+      if (section) {
+        section.scrollIntoView({ behavior: "smooth" });
+      }
+    }
+  };
+
+  return (
+    <div className="w-full h-[45vh] md:h-[90vh] overflow-hidden ">
+      <section className="m-5 mx-10 h-[40vh] md:h-[85vh] relative rounded-3xl overflow-hidden">
+        <div className=" h-full bg-black flex  justify-center relative z-[888]">
+          <span className="_indicator_ text-white text-6xl absolute bottom-5 left-[48.5%] z-[99999]  animate-bounce   hover:bg-white hover:text-black rounded-full p-1 transition-all duration-300 delay-100 border border-white/40">
+            <span onClick={handleScroll} className="cursor-pointer ">
+              <RiArrowDownDoubleLine />
+            </span>
+          </span>
+
           <Swiper
             slidesPerView={1}
             spaceBetween={30}
@@ -30,7 +51,7 @@ function Hero() {
             pagination={{
               clickable: true,
             }}
-            navigation={true}
+            navigation={false}
             modules={[Autoplay, Pagination, Navigation]}
             className="mySwiper"
           >

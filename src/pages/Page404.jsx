@@ -1,6 +1,5 @@
 import React from "react";
 import { NavLink } from "react-router";
-import NotFound404 from "../assets/dribbble_1.gif";
 
 function page404() {
   return (
@@ -9,7 +8,10 @@ function page404() {
         <h1 className="text-center text-8xl font-semibold absolute top-24 ">
           404
         </h1>
-        <img src={`${NotFound404}`} alt="" />
+        <img
+          src="https://cdn.dribbble.com/users/285475/screenshots/2083086/dribbble_1.gif"
+          alt=""
+        />
         <div className="absolute bottom-5 flex flex-col gap-8">
           <p className="text-center">
             <strong>

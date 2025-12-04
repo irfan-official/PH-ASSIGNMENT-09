@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState, useMemo } from "react";
-import { Auth_Context } from "../context/AuthContext.jsx";
+import { Auth_Context } from "../context/AuthContext";
 import { Data_Context } from "../context/DataContext.jsx";
 import ClientFeedbackCard from "../components/ClientFeedbackCard.jsx";
 import usersFeedBackData from "../seeds/usersFeedback.js";
@@ -14,41 +14,51 @@ import MeetOurExpertCardShows from "../components/MeetOurExpertCardShows.jsx";
 import Footer from "../components/Footer.jsx";
 import WinterCareTips from "../components/WinterCareTips.jsx";
 import GetInTouch from "../components/GetInTouch.jsx";
-import ScrollToTop from "../components/ScrollToTop.jsx";
 
 function Home() {
-  let { user, loading } = useContext(Auth_Context);
+  let { user } = useContext(Auth_Context);
   let { serviceData, loader } = useContext(Data_Context);
 
-  if (loader) {
-    return (
-      <div className="w-full h-screen flex items-center justify-center bg-white text-black text-3xl">
-        <span className="loading loading-spinner loading-xl scale-200"></span>
-      </div>
-    );
-  }
-
   return (
-    <>
-      <ScrollToTop />
-      <div className="w-full bg-white min-h-screen text-black flex-col justify-center items-center backdrop-blur-lg">
-        <section className="w-full md:hidden bg-slate-900  text-white font-bold">
-          <Nav />
+    <div className="w-full bg-white min-h-screen text-black flex-col justify-center items-center backdrop-blur-lg">
+      <Nav />
+
+      <Hero />
+
+      <section
+        id="services"
+        className="__Our-Services__ mt-10 md:mt-10 flex flex-col justify-center items-center gap-15"
+      >
+        <h2 className="font-bold text-5xl text-center">Our Services</h2>
+        <section className="w-[90%] md:w-[85%] mx-auto  flex items-center justify-center gap-5 md:gap-10 flex-wrap">
+          {serviceData.length >= 1 &&
+            [...new Set(serviceData.map((item) => item.category))].map(
+              (serviceCategory, index) => (
+                <NavLink
+                  to={`/all-services?category=${serviceCategory}`}
+                  className="py-3 w-[9rem] flex items-center justify-center rounded-sm font-semibold bg-slate-100 cursor-pointer hover:bg-slate-200 shadow"
+                >
+                  {serviceCategory}
+                </NavLink>
+              )
+            )}
         </section>
-        <Hero />
-        <section
-          id="services"
-          className="__Our-Services__ mt-10 md:mt-20 flex flex-col justify-center items-center gap-20"
-        >
-          <h2 className="font-bold text-5xl text-center">Our Services</h2>
-          {loader ? (
-            <section className="w-full min-h-28 flex justify-center ">
-              <span className="loading loading-spinner loading-xl scale-200"></span>
-            </section>
-          ) : (
-            <section className=" grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-10 xl:gap-5 2xl:gap-10 md:gap-15 justify-center items-center content-center mb-10">
-              {serviceData.length >= 1 &&
-                serviceData.map(
+      </section>
+      <section
+        id="services"
+        className="__Our-Services__ mt-10 md:mt-30 flex flex-col justify-center items-center gap-20"
+      >
+        <h2 className="font-bold text-5xl text-center">Popular Services</h2>
+        {loader ? (
+          <section className="w-full min-h-28 flex justify-center ">
+            <span className="loading loading-spinner loading-xl scale-200"></span>
+          </section>
+        ) : (
+          <section className=" grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-10 xl:gap-5 2xl:gap-10 md:gap-15 justify-center items-center content-center mb-10">
+            {serviceData.length >= 1 &&
+              serviceData
+                .slice(0, 8)
+                .map(
                   (
                     {
                       serviceId,
@@ -79,16 +89,15 @@ function Home() {
                     />
                   )
                 )}
-            </section>
-          )}
-        </section>
-        <MeetOurExpertCardShows />
-        <ClientFeedback />
-        <WinterCareTips />
-        <GetInTouch />
-        <Footer />
-      </div>
-    </>
+          </section>
+        )}
+      </section>
+      <MeetOurExpertCardShows />
+      <ClientFeedback />
+      <WinterCareTips />
+      <GetInTouch />
+      <Footer />
+    </div>
   );
 }
 

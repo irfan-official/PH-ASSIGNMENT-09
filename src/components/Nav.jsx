@@ -4,19 +4,40 @@ import "aos/dist/aos.css";
 import { NavLink, useNavigate, useLocation } from "react-router";
 import { MdOutlinePets } from "react-icons/md";
 import { BiSolidPhoneCall } from "react-icons/bi";
-import { Auth_Context } from "../context/AuthContext.jsx";
+import { Auth_Context } from "../context/AuthContext";
 // DropdownPortal.jsx
 
 function Nav() {
   const [isMobile, setIsMobile] = useState(false);
   const [hoverDiv, setHoverDiv] = useState(false);
+  const [lastScroll, setLastScroll] = useState(0);
+  const [visible, setVisible] = useState(true);
 
   let { user } = useContext(Auth_Context);
 
   const navigate = useNavigate();
   const location = useLocation();
 
-  const handleScroll = () => {
+  useEffect(() => {
+    const handleScroll = () => {
+      const currentScroll = window.scrollY;
+
+      if (currentScroll > lastScroll) {
+        // scrolling down → hide navbar
+        setVisible(false);
+      } else {
+        // scrolling up → show navbar
+        setVisible(true);
+      }
+
+      setLastScroll(currentScroll);
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, [lastScroll]);
+
+  const handleScrollBarID = () => {
     if (location.pathname !== "/") {
       navigate("/");
 
@@ -39,8 +60,8 @@ function Nav() {
       <NavLink to="/" className={activePage}>
         Home
       </NavLink>
-      <NavLink to="#" onClick={handleScroll} className="text-nowrap">
-        Services
+      <NavLink to="/all-services" className="text-nowrap">
+        All Services
       </NavLink>
       <NavLink
         to="#"
@@ -53,6 +74,12 @@ function Nav() {
         className={"text-nowrap"}
       >
         About Us
+      </NavLink>
+      <NavLink to="/contact-us" className={"text-nowrap"}>
+        Contact Us
+      </NavLink>
+      <NavLink to="/support-us" className={"text-nowrap"}>
+        Support
       </NavLink>
     </>
   );
@@ -75,8 +102,9 @@ function Nav() {
   return (
     <nav
       id="nav"
-      data-aos="fade-down"
-      className="flex w-[100%] px-5 md:px-20 py-5 "
+      className={`flex w-full px-5 md:px-20 py-5 bg-slate-900 text-white font-bold z-[99999999] sticky top-0 right-0 transition-transform duration-300  ${
+        visible ? "translate-y-0" : "-translate-y-full"
+      } `}
     >
       <section className="__left__ w-1/2 flex items-center justify-start gap-4 lg:gap-20 ">
         {isMobile && (

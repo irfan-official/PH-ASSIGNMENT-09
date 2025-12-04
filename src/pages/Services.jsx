@@ -3,7 +3,6 @@ import { Outlet } from "react-router";
 import { useParams } from "react-router";
 import Nav from "../components/Nav.jsx";
 import Footer from "../components/Footer.jsx";
-import ScrollToTop from "../components/ScrollToTop.jsx";
 
 function Services() {
   const { id } = useParams();
@@ -11,7 +10,6 @@ function Services() {
   if (id) {
     return (
       <>
-        <ScrollToTop />
         <section className="w-full  bg-slate-900  text-white font-bold">
           <Nav />
         </section>

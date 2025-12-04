@@ -4,7 +4,7 @@ import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
 import { Autoplay, Pagination, Navigation } from "swiper/modules";
-import MeetOurExpertCard from "./MeetOurExpertCard.jsx";
+import MeetOurExpertCard from "./MeetOurExpertCard";
 import Aos from "aos";
 import "aos/dist/aos.css";
 
@@ -24,7 +24,7 @@ function Hero() {
 
   return (
     <div className="flex flex-col">
-      <h2 className="font-bold text-4xl md:text-5xl text-center mt-30">
+      <h2 className="font-bold text-5xl text-center mt-30">
         Meet Our Expert Vets
       </h2>
       <div

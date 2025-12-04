@@ -7,12 +7,25 @@ import Services from "../pages/Services.jsx";
 import ServicesDetails from "../pages/ServicesDetails.jsx";
 import ProtectedRoute from "../components/ProtectedRoute.jsx";
 import MyProfile from "../pages/MyProfile.jsx";
-import ForgotPassword from "../pages/ForgotPassword.jsx";
-
+import AllServices from "../pages/AllServices.jsx";
+import ContactUs from "../pages/ContactUs.jsx";
+import SupportUs from "../pages/SupportUs.jsx";
 const router = createBrowserRouter([
   {
     path: "/",
     Component: Home,
+  },
+  {
+    path: "/all-services",
+    element: <AllServices />,
+  },
+  {
+    path: "/contact-us",
+    element: <ContactUs />,
+  },
+  {
+    path: "/support-us",
+    element: <SupportUs />,
   },
   {
     path: "/profile",
@@ -28,11 +41,7 @@ const router = createBrowserRouter([
     children: [
       {
         path: ":id",
-        element: (
-          <ProtectedRoute>
-            <ServicesDetails />
-          </ProtectedRoute>
-        ),
+        element: <ServicesDetails />,
       },
     ],
   },
@@ -43,10 +52,6 @@ const router = createBrowserRouter([
   {
     path: "/register",
     Component: Register,
-  },
-  {
-    path: "/reset-password",
-    Component: ForgotPassword,
   },
   {
     path: "*",

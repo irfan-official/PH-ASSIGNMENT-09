@@ -1,7 +1,8 @@
 import React from "react";
 import { FaStar } from "react-icons/fa";
+import BackGroundSVG from "../assets/abstract-contour-topographic-line-pattern-260nw-1972516931-removebg-preview.png";
 import { FaRegStar } from "react-icons/fa";
-
+import { FaStarHalfAlt } from "react-icons/fa";
 
 function ClientFeedbackCard({ user_img, rating, feedback }) {
   return (

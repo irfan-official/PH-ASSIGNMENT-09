@@ -3,7 +3,7 @@ import "../index.css";
 
 function Hero_Text() {
   return (
-    <section className="w-full h-full flex flex-col gap-5 items-center justify-center">
+    <section className="w-full h-full flex flex-col gap-5 items-center justify-center relative">
       <span className="hero-text-style text-4xl md:text-9xl font-semibold ">
         WE CARE &
       </span>

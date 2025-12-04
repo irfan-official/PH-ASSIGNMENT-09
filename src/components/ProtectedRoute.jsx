@@ -1,14 +1,14 @@
 import React, { useContext } from "react";
 import { Navigate } from "react-router";
-import { Auth_Context } from "../context/AuthContext.jsx";
+import { Auth_Context } from "../context/AuthContext";
 
 function ProtectedRoute({ children }) {
   const { user, loading } = useContext(Auth_Context);
 
   if (loading) {
     return (
-      <div className="min-h-screen flex items-center justify-center text-black text-lg">
-        <span className="loading loading-spinner loading-xl"></span>
+      <div className="min-h-screen flex items-center justify-center">
+        <h1 className="text-2xl font-bold text-gray-600">Loading...</h1>
       </div>
     );
   }

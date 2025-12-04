@@ -1,16 +1,9 @@
 import React from "react";
-import { toast, Bounce } from "react-toastify";
 
 function GetInTouch() {
   function handleSubmit(e) {
     e.preventDefault();
-    toast.success("Thank you for connected", {
-      position: "top-center",
-      autoClose: 3000,
-      theme: "light",
-      transition: Bounce,
-    });
-    e.target.reset();
+    alert("submitted");
   }
   return (
     <div className="w-full min-h-[30vh]  gap-15 flex flex-col items-center py-10 mb-10 px-5">

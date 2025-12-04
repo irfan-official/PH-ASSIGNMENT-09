@@ -21,13 +21,15 @@ function Footer() {
             <h2 className="text-[27px] font-bold  w-full">Pet Care</h2>
           </section>
           <p className="text-white/40 text-justify tracking-normal">
-            Pet Care is a smart, reliable platform for pet owners, offering
-            tailored winter care services. The app connects users with
-            veterinarians, groomers, and suppliers for seasonal needs like
-            nutrition, warmth, and hygiene. With booking options, health
-            reminders, and expert tips, Pet Care keeps every pet safe, cozy, and
-            healthy throughout winter—bringing trusted, compassionate pet care
-            directly to your fingertips.
+            Hero IO is a modern web-based platform that recreates the core
+            experience of a digital app marketplace. Users can seamlessly
+            browse, explore, and interact with a variety of applications, each
+            displaying complete details such as size, ratings, reviews, and
+            download counts. It offers a responsive and engaging interface
+            designed for intuitive navigation and immersive exploration. Built
+            as a PWA-style solution, Hero IO provides smooth transitions,
+            real-time data handling, and dynamic content rendering, delivering
+            an app store-like environment entirely within the browser.
           </p>
         </section>
         <section className="__Company__ mt-6 lg:mt-0 w-full col-span-2 sm:col-span-1 lg:col-span-1 order-2 flex flex-col gap-2  justify-start items-center">
@@ -89,26 +91,67 @@ function Footer() {
             <h2 className="font-semibold w-full text-center lg:text-start text-[20px] mb-4">
               Social Links
             </h2>
+
             <ul className="flex gap-4 items-start justify-center text-white/40">
               <li className="flex items-center justify-center gap-2">
-                <span className="c">
-                  <img className="" src={Twitter_icon} alt="" />
-                </span>
+                <a
+                  href="https://x.com/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <span className="bg-cover">
+                    <img
+                      className="w-5 h-5 object-cover object-center"
+                      src={Twitter_icon}
+                      alt=""
+                    />
+                  </span>
+                </a>
               </li>
               <li className="flex items-center justify-center gap-2">
-                <span className="c">
-                  <img className="" src={LinkedIn_icon} alt="" />
-                </span>
+                <a
+                  href="https://www.linkedin.com/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <span className="bg-cover">
+                    <img
+                      className="w-5 h-5 object-cover object-center"
+                      src={LinkedIn_icon}
+                      alt=""
+                    />
+                  </span>
+                </a>
               </li>
               <li className="flex items-center justify-center gap-2">
-                <span className="c">
-                  <img className="" src={FaceBook_icon} alt="" />
-                </span>
+                <a
+                  href="https://www.facebook.com/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <span className="bg-cover">
+                    <img
+                      className="w-5 h-5 object-cover object-center"
+                      src={FaceBook_icon}
+                      alt=""
+                    />
+                  </span>
+                </a>
               </li>
               <li className="flex items-center justify-center gap-2">
-                <span className="c">
-                  <img className="" src={Email_icon} alt="" />
-                </span>
+                <a
+                  href="https://mail.google.com/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <span className="bg-cover">
+                    <img
+                      className="w-5 h-5 object-cover object-center"
+                      src={Email_icon}
+                      alt=""
+                    />
+                  </span>
+                </a>
               </li>
             </ul>
           </div>

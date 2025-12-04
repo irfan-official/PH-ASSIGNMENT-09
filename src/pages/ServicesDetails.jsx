@@ -8,7 +8,6 @@ import ClientComment from "../components/ClintComment.jsx";
 import { BsFillChatRightTextFill } from "react-icons/bs";
 import { Data_Context } from "../context/DataContext.jsx";
 import Rating from "../components/Rating.jsx";
-import NoServiceFound from "../pages/NoServiceFound.jsx";
 
 function ServicesDetails() {
   const { id } = useParams();
@@ -20,7 +19,6 @@ function ServicesDetails() {
   const [excedID, setExcedID] = useState(false);
   const [checkService, setCheckService] = useState(null);
   const [sortedRatings, setSortedRatings] = useState([]);
-
   let { serviceData, loader, DataFetching } = useContext(Data_Context);
 
   useEffect(() => {
@@ -58,16 +56,12 @@ function ServicesDetails() {
     }
   }
 
-  if (loader) {
+  if (loader || !checkService) {
     return (
       <div className="w-full h-screen flex items-center justify-center">
         <span className="loading loading-spinner loading-lg"></span>
       </div>
     );
-  }
-
-  if (excedID) {
-    return <NoServiceFound />;
   }
 
   return (
@@ -165,7 +159,7 @@ function ServicesDetails() {
             </section>
           </section>
           <section className="__Price__ px-5 py-3 bg-blue-100 rounded mt-5 flex items-center justify-start gap-2 font-semibold">
-            <span className="c">Service Price:</span>
+            <span className="c">Price:</span>
             <span className="c">${checkService?.price}</span>
           </section>
           <section className="_install_ border-t-2 md:border-none pt-5 border-t-gray-600/40 w-full">
@@ -178,7 +172,7 @@ function ServicesDetails() {
                   transition: Bounce,
                 });
               }}
-              className="text-center  text-[1.1rem] px-4 py-2 md:px-5 md:py-3 rounded-lg bg-violet-500 hover:bg-violet-600 hover:text-violet-400 text-white font-semibold md:text-[1.3rem] shadow-lg cursor-pointer"
+              className="text-center  text-[1.1rem] px-4 py-2 md:px-5 md:py-3 rounded-lg bg-violet-500 text-white font-semibold md:text-[1.3rem] shadow-lg cursor-pointer"
             >
               {Booked ? "Booked" : `Book service now `}
             </button>
@@ -193,7 +187,7 @@ function ServicesDetails() {
       </section>
 
       <section className=" _descriptions_ flex flex-col items-start justify-center gap-4 mt-20">
-        <h2 className="font-bold text-4xl mb-6">Description</h2>
+        <h2 className="font-bold text-4xl">Description</h2>
         <span className="flex flex-col items-center justify-center gap-4 text-gray-700/70 text-justify">
           <p key={1}>{checkService?.serviceDetails}</p>
         </span>
